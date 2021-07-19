@@ -1,0 +1,52 @@
+MERN
+
+1) node -v
+2) cria dir frontend e nele roda npx create-react-app enveloperreact (cria frontend react no diretório enveloperreact)
+3) criar diretorio backend e roda npm init -y
+5) instalar dependências:
+npm install express cors mongoose dotenv
+6) npm install -g nodemon
+
+7) criar server.js
+7.1) para rodar o backend vai no dir backend e no terminal executa nodemon server
+
+8) para rodar o frontend react vai no diretório frontend/enveloper-react e 
+no terminal executa  npm start
+
+8.1) no frontend:
+/public tem o index.html onde o frontend react App será carregado na div "root"
+/src tem o index.js que é o javascript que carrega com o html acima e carrega react e 
+importa App.js ( que é onde o app react é criado) e faz o render dele na div "root" do html
+/src tem o App.js que é o aplicativo react
+
+9) npm install bootstrap
+9.1) import bootstrap no App.js (import "bootstrap/dist/css/bootstrap.min.css")
+
+10) npm install react-router-dom
+(make it easy to route different urls to different react components)
+10.1) importar em App.js usando import { BrowserRouter as Router, Route } from "react-router-dom";
+10.2) em App.js criar um router element <Router>
+
+11) connect frontend to the backend causing frontend to send HTTP requests 
+to the server endpoint on the backend
+using AXIOS library to send HTTP request
+no terminal: npm install axios
+
+12) login
+
+[ route ]
+chama um método da controller
+
+[ models ]
+interage com o banco de dados
+por exemplo, recupera o menu de pratos do dia
+
+[ controller ]
+é chamado pela route
+interage com o model para banco de dados
+interage com o serviços para outras tarefas em services
+retorna para a route um json por exemplo com os dados
+
+[ services ]
+business logic
+contains a bunch of classes and methods to take up single responsalibity

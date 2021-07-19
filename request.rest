@@ -1,0 +1,25 @@
+GET http://localhost:5000/users
+###
+GET http://localhost:5000/users/60e57fae3368f31ef8e9ec1f
+###
+DELETE  http://localhost:5000/users/60e99ad0ffe3c205e891d04a
+###
+POST http://localhost:5000/users/add
+Content-Type: application/json
+
+{
+    "username": "marat.safin",
+    "password": "beerclaw",
+    "passcheck": "beerclaw",
+    "isadmin": true
+}
+###
+PUT http://localhost:5000/users/60e57fae3368f31ef8e9ec1f
+Content-Type: application/json
+
+{
+    "username": "guga.kuerten",
+    "password": "claysurfer",
+    "passcheck": "claysurfer",
+    "isadmin": true
+}
