@@ -9,8 +9,6 @@ export default class EditUser extends Component {
         this.handleOnChange = this.handleOnChange.bind(this);
         this.handleOnSubmit = this.handleOnSubmit.bind(this);
 
-        //get user data by id on params
-        
         this.state = {
             id: 0,
             username: '',
@@ -20,7 +18,23 @@ export default class EditUser extends Component {
         }
     }
 
-    
+    componentDidMount() {
+        // const {match: {params}} = this.props;
+        const userId = this.props.match.params.id;
+        Axios.get("http://localhost:5000/users/" + userId)
+            .then(response => {
+                if (response.data != null) {
+                    this.setState({
+                        id: response.data._id,
+                        username: response.data.username,
+                        password: response.data.password,
+                        passcheck: response.data.passcheck,
+                        isadmin: response.data.isadmin
+                    })
+                };
+            });                        
+    }
+
     handleOnChange(event){
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -42,10 +56,13 @@ export default class EditUser extends Component {
             isadmin: this.state.isadmin
         }
 
-        Axios.put('http://localhost:5000/users/', user)
+        // update user
+        Axios.put('http://localhost:5000/users/'+user.id, user)
             .then( res => {console.log(res.data)})
             .catch( err => {console.log(err)});
 
+        // if want to redirect to users list (mas não está atualizando)
+        window.location = '/user';
     }
 
     render() {
@@ -53,7 +70,17 @@ export default class EditUser extends Component {
             <div>
                 <h3>Editar Usuário</h3>
                 <form onSubmit={this.handleOnSubmit}>
-                    <div className="form-group">
+                    <div className="form-group col-md-6">
+                        <label>ID</label>
+                        <input type="text" 
+                            readOnly
+                            className="form-control"
+                            name="id"
+                            value={this.state.id}
+                            onChange={this.handleOnChange}>
+                        </input>
+                    </div>
+                    <div className="form-group col-md-6">
                         <label>Username</label>
                         <input type="text"
                             name="username"
@@ -62,22 +89,24 @@ export default class EditUser extends Component {
                             onChange={this.handleOnChange}>
                         </input>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group col-md-6">
                         <label>Senha</label>
                         <input type="text"
                             name="password"
+                            minLength="6"
                             className="form-control"
-                            value={this.state.value}
+                            value={this.state.password}
                             onChange={this.handleOnChange}>
                         </input>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group col-md-6">
                         <label>Confirmar Senha</label>
                         <input type="text"
                             name="passcheck"
+                            minLength="6"
                             className="form-control"
                             value={this.state.passcheck}
-                            onChange={this.handleOnChange} >
+                            onChange={this.handleOnChange}>
                         </input>
                     </div>
                     <div className="form-group col-md-6">
@@ -90,7 +119,7 @@ export default class EditUser extends Component {
                         </label>
                     </div>
                     <div className="form-group">
-                        <input type="Submit"
+                        <input type="submit"
                             className="btn btn-primary"
                             value="Atualizar">
                         </input>
