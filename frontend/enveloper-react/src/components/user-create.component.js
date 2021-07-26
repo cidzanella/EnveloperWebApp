@@ -64,7 +64,7 @@ export default class CreateUser extends Component {
                 <h3>Novo Usuário</h3>
                 <form onSubmit={this.handleOnSubmit}>
                     <div className="form-group col-md-6">
-                        <label>Username </label>
+                        <label>Username</label>
                         <input type="text"
                             name="username"
                             className="form-control"
