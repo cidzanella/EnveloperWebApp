@@ -9,7 +9,7 @@ const UserRow = props => (
         <td>{props.user.username}</td>
         <td>{props.user.isadmin ? "Adm" : "Std"}</td>
         <td>
-            <Link to={"/" + props.user._id}>edit</Link> | <a href="#" onClick={() => { props.deleteUser(props.user._id) }}>delete</a>
+            <Link to={"/user/edit/" + props.user._id}>edit</Link> | <a href="#" onClick={() => { props.deleteUser(props.user._id) }}>delete</a>
         </td>
     </tr>
 )

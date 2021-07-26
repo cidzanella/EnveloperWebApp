@@ -9,6 +9,8 @@ export default class EditUser extends Component {
         this.handleOnChange = this.handleOnChange.bind(this);
         this.handleOnSubmit = this.handleOnSubmit.bind(this);
 
+        //get user data by id on params
+        
         this.state = {
             id: 0,
             username: '',
@@ -18,6 +20,7 @@ export default class EditUser extends Component {
         }
     }
 
+    
     handleOnChange(event){
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -77,11 +80,10 @@ export default class EditUser extends Component {
                             onChange={this.handleOnChange} >
                         </input>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group col-md-6">
                         <label>
                             <input type="checkbox"
                                 name="isadmin"
-                                className="form-control"
                                 checked={this.state.isadmin}
                                 onChange={this.handleOnChange} />
                             &nbsp;Administrador

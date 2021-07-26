@@ -6,7 +6,7 @@ const userController = require('../controllers/users.controller');
 
 router.get('/', userController.getAllUsers);
 router.get('/:id', userController.getOneUserById); //???
-router.get('/new', userController.newUser); //presents new user form
+router.get('/new', userController.newUser); //presents new user form: should it pass an empty object to be populated by form?
 router.post('/add', userController.createUser); //register user 
 router.delete('/:id', userController.deleteUser);
 router.put('/:id', userController.updateUser); //??? put
