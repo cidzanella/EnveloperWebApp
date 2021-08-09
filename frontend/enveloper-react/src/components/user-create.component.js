@@ -41,7 +41,7 @@ export default class CreateUser extends Component {
         };
 
         // http call to backend api
-        Axios.post('http://localhost:5000/users/add', user)
+        Axios.post('http://localhost:5000/api/users/add', user)
             .then(res => console.log(res.data));
 
         // later will be replaced by backend method call

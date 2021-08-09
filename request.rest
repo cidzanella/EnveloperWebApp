@@ -1,10 +1,10 @@
-GET http://localhost:5000/users
+GET http://localhost:5000/api/users
 ###
-GET http://localhost:5000/users/60e57fae3368f31ef8e9ec1f
+GET http://localhost:5000/api/users/60e57fae3368f31ef8e9ec1f
 ###
-DELETE  http://localhost:5000/users/60f18d47c02c342d2cf579e0
+DELETE  http://localhost:5000/api/users/60f18d47c02c342d2cf579e0
 ###
-POST http://localhost:5000/users/add
+POST http://localhost:5000/api/users/add
 Content-Type: application/json
 
 {
@@ -14,7 +14,7 @@ Content-Type: application/json
     "isadmin": true
 }
 ###
-PUT http://localhost:5000/users/60e57fae3368f31ef8e9ec1f
+PUT http://localhost:5000/api/users/60e57fae3368f31ef8e9ec1f
 Content-Type: application/json
 
 {

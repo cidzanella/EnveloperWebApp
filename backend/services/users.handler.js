@@ -32,12 +32,21 @@ const getUsersByUsername = async (req, res) => {
 
 // get one user by id on parameter
 // req.params é definido na rota (ex: /user/:id) e na chamada /user/123 então acessa com req.params.id
-const getOneUserById = async (req, res) => {
-    User.findById(req.params.id)
-        .then(user => res.status(200).json(user))
-        .catch(err => res.status(404).json('Error: ' + err));
+const getOneUserById = async (id) => {
+    try{
+        let user = await User.findById(id);
+        return user;
+    }catch (e){
+        throw Error('Error fetching user: ' + e);
+    }
 };
 
+// ???? como receber parametro e devolver um usuario do bd
+const getOneUserByUsername = async (username, password, retrivedUser) => {
+    User.findOne({username, password})
+        .then(user => retrivedUser = user)
+        .catch(err => res.json(`Error: ${err}`));
+}
 // register new user on mongoDB
 const createUser = async (req, res) =>{
     // get the user objetct from json request body

@@ -23,7 +23,7 @@ connDB.once('open', () => console.log(`Connected to Mongoose: ${uri}`));
 
 // require routes files
 const usersRouter = require('./api/routes/users.route');
-app.use('/users', usersRouter);
+app.use(usersRouter);
 
 // run the server
 app.listen(port, () => {

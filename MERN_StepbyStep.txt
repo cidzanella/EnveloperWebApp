@@ -32,6 +32,8 @@ to the server endpoint on the backend
 using AXIOS library to send HTTP request
 no terminal: npm install axios
 
+OBS: require cookie-parser para utilizar cookie no servidor
+
 12) login
 
 [ route ]
@@ -46,6 +48,12 @@ por exemplo, recupera o menu de pratos do dia
 interage com o model para banco de dados
 interage com o serviços para outras tarefas em services
 retorna para a route um json por exemplo com os dados
+
+The Controller class is responsible for the following processing stages:
+Locating the appropriate action method to call and validating that it can be called.
+Getting the values to use as the action method's arguments.
+Handling all errors that might occur during the execution of the action method.
+Providing the default WebFormViewEngine class for rendering ASP.NET page types (views).
 
 [ services ]
 business logic
