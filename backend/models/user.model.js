@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
     isadmin:{
         type: Boolean,
         required: true
+    },
+    date:{
+        type: Date,
+        default: Date.now
     }
 }, {
     timestamps: true

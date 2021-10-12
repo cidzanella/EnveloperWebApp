@@ -20,10 +20,16 @@ mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true});
 const connDB = mongoose.connection;
 connDB.on('error', error => console.log(`Mongoose connection error: ${error}`));
 connDB.once('open', () => console.log(`Connected to Mongoose: ${uri}`));
+// another approuch on Mongoose connection:
+// mongoose.connect(uri)
+//     .then( () => console.log('MongoDB connected ...') )
+//     .catch( err => console.log(err));
 
 // require routes files
 const usersRouter = require('./api/routes/users.route');
+const authRouter = require('./api/routes/auth.route');
 app.use(usersRouter);
+app.use(authRouter);
 
 // run the server
 app.listen(port, () => {

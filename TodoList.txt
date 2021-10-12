@@ -1,0 +1,72 @@
+[rotas]
+/login
+/logout
+/abrircaixa
+/registraraberturaenvelope
+/informarerroabertura
+/fecharcaixa
+/registrarfechamentoenvelope
+/informarerrofechamento
+/consultarenvelope
+/conferirenvelope
+
+[model]
+Envelope
+        public int Id { get; set; }
+        public string Rotulo { get; set; }
+        public double DinheiroInicial { get; set; }
+        public double DinheiroInicialDiferenca { get; set; }  // envelope_inicial_diferenca indica a diferença entre o dinheiro inicial encontrado no caixa e o dinheiro passagem caixa anterior, se for diferente de 0 então não bateu)
+        public double DinheiroFinal { get; set; }
+        public double VendasCartao { get; set; }
+        public double SangriaTotalCaixa { get; set; }
+        public double ReforcoTotalCaixa { get; set;}
+        public double Faturamento { get; set; }
+        public double DiferencaFechamento { get; set; } //indica que o fechamento do caixa não bateu, sobrou ou faltou dinheiro
+        public double EnvelopeDinheiro { get; set; }
+        public double PassagemCaixaDinheiro { get; set; }
+        public bool   EnvelopeConferido { get; set; } //indica se o envelope foi conferido pela ADM
+        public double EnvelopeDinheiroDiferenca { get; set; } //indica a diferença entre o valor esperado e o valor encontrado no envelope
+        public string DataAberturaCaixa { get; set; }
+        public string HoraAberturaCaixa { get; set; }
+        public string DataFechamentoCaixa { get; set; }
+        public string HoraFechamentoCaixa { get; set; }
+        public string TemperaturaDia { get; set; }
+        public string Observacao  { get; set; }
+        public string Operador { get; set; }
+        public string Pdv { get; set; } 
+        public int Clima { get; set; } 
+        public int Turno { get; set; }
+        public bool AtencaoFlagVerificar { get; set; } // indica que algo não bateu mas operador prosseguiu assim mesmo
+        public string AtencaoDescricao { get; set; } // dica do que não bateu no fechamento e que foi sinalizado para o operador, mas este prosseguiu
+
+
+[restful.api]
+getAll
+getOne
+create (post)
+update (put or patch)
+delete 
+(para testar a API usar extension REST Client do VSCode dica do WebDevSimplified no Build a REST API with Node )
+
+[servicos.genericos]
+tempo
+impressao
+email
+
+[servicos.abertura]
+verificar_caixa_aberto
+verificar_campos_form
+conferir_troco_inicial
+iniciar_envelope_registrar_abertura_bd
+acionar_flag_atencao_noBD
+
+[servicos.fechamento]
+verificar_caixa_aberto
+verificar_campos_form
+verificar_diferenca_fechamento
+verificar_passagem_caixa
+verificar_dinheiroenvelope_dinheiropassagem_vendas
+validar_preenchimento_envelope
+validar_valortotalfechamento (valor inicial + entradas - saida)
+registrar_fechamento_bd
+acionar_flag_atencao_noBD	

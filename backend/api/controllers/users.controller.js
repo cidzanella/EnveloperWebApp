@@ -23,7 +23,10 @@ const getOneUserById = async (req, res) => {
 };
 
 const createUser = async (req, res) =>{
-    await userHandler.createUser(req, res);
+    res = await userHandler.createUser(req.body, (err, userId) => {
+        if (err) res.status(400).json('Error: ' + err);
+        res.status(200).json({userId});
+    });
 };
 
 // present new user form

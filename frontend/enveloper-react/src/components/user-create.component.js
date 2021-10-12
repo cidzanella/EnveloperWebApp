@@ -48,7 +48,7 @@ export default class CreateUser extends Component {
         console.log(user);
 
         // if want to redirect to users list
-        window.location = '/';
+        window.location = '/user';
 
         // // if want to keep in same page to enter multiples users, reset state
         // this.setState({

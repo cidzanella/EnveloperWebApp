@@ -22,7 +22,7 @@ importa App.js ( que é onde o app react é criado) e faz o render dele na div "
 9) npm install bootstrap
 9.1) import bootstrap no App.js (import "bootstrap/dist/css/bootstrap.min.css")
 
-10) npm install react-router-dom
+n10) npm install react-router-dom
 (make it easy to route different urls to different react components)
 10.1) importar em App.js usando import { BrowserRouter as Router, Route } from "react-router-dom";
 10.2) em App.js criar um router element <Router>
@@ -32,9 +32,28 @@ to the server endpoint on the backend
 using AXIOS library to send HTTP request
 no terminal: npm install axios
 
-OBS: require cookie-parser para utilizar cookie no servidor
+11.a) to start simutaneously front and backend:
+first install package concurrently on prompt: npm install concurrently -D (-D for development only)
+then change package.json scripts:
+"client": "npm start --prefix frontend",
+"server": "nodemon server.js",
+"dev": "concurrently \"npm run server\" \" npm run client\""
+then run using 'npm run dev' on prompt
 
-12) login
+OBS: LOGIN require cookie-parser para utilizar cookie no servidor
+
+12) FRONT END REACT: files directory structure
+on SRC create folders: 
+assets for images and stuff
+components for react components
+functions for some specific function that may be created
+services for service files such as api connection
+pages for pages
+and file routes.js for front end routes
+
+13) install Material-UI react: > npm install @material-ui/core on folder frontend/enveloper-react
+and npm install @material-ui/icons
+
 
 [ route ]
 chama um método da controller
