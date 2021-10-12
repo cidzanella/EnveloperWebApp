@@ -35,7 +35,7 @@ export default class UserList extends Component {
 
     // get all users
     getAllUsers(){
-        Axios.get('http://localhost:5000/users/')
+        Axios.get('http://localhost:5000/api/users/')
         .then(response => {
             this.setState( {users: response.data} );
         })
@@ -46,7 +46,7 @@ export default class UserList extends Component {
     
     userDelete(id) {
         // delete by id user selected
-        Axios.delete('http://localhost:5000/users/' + id)
+        Axios.delete('http://localhost:5000/api/users/' + id)
         .then(res => console.log(res.data));
 
         this.setState({

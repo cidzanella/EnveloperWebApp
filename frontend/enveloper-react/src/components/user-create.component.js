@@ -41,14 +41,14 @@ export default class CreateUser extends Component {
         };
 
         // http call to backend api
-        Axios.post('http://localhost:5000/users/add', user)
+        Axios.post('http://localhost:5000/api/users/add', user)
             .then(res => console.log(res.data));
 
         // later will be replaced by backend method call
         console.log(user);
 
         // if want to redirect to users list
-        window.location = '/';
+        window.location = '/user';
 
         // // if want to keep in same page to enter multiples users, reset state
         // this.setState({

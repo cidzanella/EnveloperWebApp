@@ -21,7 +21,7 @@ export default class EditUser extends Component {
     componentDidMount() {
         // const {match: {params}} = this.props;
         const userId = this.props.match.params.id;
-        Axios.get("http://localhost:5000/users/" + userId)
+        Axios.get("http://localhost:5000/api/users/" + userId)
             .then(response => {
                 if (response.data != null) {
                     this.setState({
@@ -57,7 +57,7 @@ export default class EditUser extends Component {
         }
 
         // update user
-        Axios.put('http://localhost:5000/users/'+user.id, user)
+        Axios.put('http://localhost:5000/api/users/'+user.id, user)
             .then( res => {console.log(res.data)})
             .catch( err => {console.log(err)});
 

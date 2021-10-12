@@ -3,6 +3,9 @@
 // require the model for user data
 let User = require('../models/user.model');
 
+// require bcrypt for password security
+const bcrypt = require('bcrypt');
+
 // CRUD methods
 
 // get all users on mongoDB
@@ -32,24 +35,41 @@ const getUsersByUsername = async (req, res) => {
 
 // get one user by id on parameter
 // req.params é definido na rota (ex: /user/:id) e na chamada /user/123 então acessa com req.params.id
-const getOneUserById = async (req, res) => {
-    User.findById(req.params.id)
-        .then(user => res.status(200).json(user))
-        .catch(err => res.status(404).json('Error: ' + err));
+const getOneUserById = async (id) => {
+    try{
+        let user = await User.findById(id);
+        return user;
+    }catch (e){
+        throw Error('Error fetching user: ' + e);
+    }
 };
 
+// ???? como receber parametro e devolver um usuario do bd
+const getOneUserByUsername = async (username) => {
+//     User.findOne({username}, (err, userFound) => {
+//         if (err) throw err;
+//         console.log("getOne :: " + username);
+//         console.log(userFound);
+//         return userFound;
+//     })
+
+    return User.findOne({username})
+        .then(userFound => {return(userFound)})
+        .catch(err => {throw err});
+}
+
 // register new user on mongoDB
-const createUser = async (req, res) =>{
+const createUser = async (userData, callback) =>{
     // get the user objetct from json request body
     const newUser = new User({
-        username: req.body.username,
-        password: req.body.password,
-        passcheck: req.body.passcheck,
-        isadmin: req.body.isadmin
+        username: userData.username,
+        password:  await bcrypt.hash(userData.password, 10),
+        passcheck: userData.passcheck,
+        isadmin: userData.isadmin
     });
     await newUser.save()
-            .then( user => res.status(201).json('User added: ' + user.id) )
-            .catch( err => res.status(400).json('Error:' + err ));
+            .then( user => callback(null, user.id) )
+            .catch( err => callback(err, null) );
 };
 
 // present new user form
@@ -60,9 +80,9 @@ const newUser = (req, res) => {
 // update
 const updateUser = (req, res) => {
     User.findByIdAndUpdate(req.params.id)
-        .then((user) => {
+        .then(async (user) => {
             user.username = req.body.username;
-            user.password = req.body.password;
+            user.password = await bcrypt.hash(req.body.password, 10),
             user.passcheck = req.body.passcheck;
             user.isadmin = req.body.isadmin;
             
@@ -82,4 +102,4 @@ const deleteUser = (req, res) => {
 };
 
 // export controller methods
-module.exports = {getAllUsers, getOneUserById, getUsersByUsername, createUser, newUser, updateUser, deleteUser};
+module.exports = {getAllUsers, getOneUserById, getOneUserByUsername, getUsersByUsername, createUser, newUser, updateUser, deleteUser};

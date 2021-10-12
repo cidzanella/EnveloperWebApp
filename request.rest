@@ -1,25 +1,45 @@
-GET http://localhost:5000/users
-###
-GET http://localhost:5000/users/60e57fae3368f31ef8e9ec1f
-###
-DELETE  http://localhost:5000/users/60f18d47c02c342d2cf579e0
-###
-POST http://localhost:5000/users/add
+### GET ALL USERS
+GET http://localhost:5000/api/users
+
+### GET ONE USER
+GET http://localhost:5000/api/users/611a56dfd2895101f07b2ee5
+
+### DELETE USER
+DELETE  http://localhost:5000/api/users/60e99dd5ffe3c205e891d04c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMWE1NmRmZDI4OTUxMDFmMDdiMmVlNSIsInVzZXJuYW1lIjoibWFyYXQuc2FmaW4iLCJpc2FkbWluIjp0cnVlLCJpYXQiOjE2MjkyMDY4MDF9.OeJ7_eP4_WvpfKcpJbJ_3Kayr7adJKx3koIb9GYiJTM
+
+### ADD USER
+POST http://localhost:5000/api/users/add
+Content-Type: application/json
+
+{
+    "username": "andy.murray",
+    "password": "sirandy",
+    "passcheck": "sirandy",
+    "isadmin": true
+}
+
+### UPDATE USER
+PUT http://localhost:5000/api/users/60ef94e7c02c342d2cf579d5
+Content-Type: application/json
+
+{
+   "username": "andre.agassi",
+    "password": "dragon",
+    "passcheck": "dragon",
+    "isadmin": false
+}
+
+####################################################################
+
+### LOGIN
+POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
     "username": "marat.safin",
-    "password": "beerclaw",
-    "passcheck": "beerclaw",
-    "isadmin": true
+    "password": "beerclaw"
 }
-###
-PUT http://localhost:5000/users/60e57fae3368f31ef8e9ec1f
-Content-Type: application/json
 
-{
-    "username": "guga.kuerten",
-    "password": "manezinho",
-    "passcheck": "manezinho",
-    "isadmin": false
-}
+### LOGOUT
+POST http://localhost:5000/api/auth/logout
